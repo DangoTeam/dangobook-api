@@ -1,12 +1,10 @@
-import { Router } from "express";
-import { AuthenticateUserController } from "./controllers/AuthenticateUserController";
-import { CreateUserController } from "./controllers/CreateUserController";
+import { Router } from 'express';
+import AuthenticateUserController from './controllers/AuthenticateUserController';
+import CreateUserController from './controllers/CreateUserController';
 
-const router = Router();
+// eslint-disable-next-line import/prefer-default-export
+export const router = Router();
 
-router.post('/authenticate', new AuthenticateUserController().handle);
-
-router.post('/signup', new CreateUserController().handle);
-
-export { router }
-
+router
+  .post('/authenticate', AuthenticateUserController.handle)
+  .post('/signup', CreateUserController.handle);

@@ -1,19 +1,19 @@
-import UserRepository from '../repositories/UserRepository'
+import UserRepository from '../repositories/UserRepository';
 
 class CreateUserService {
   async execute(username: string, password: string, name?: string) {
-    const userAlreadyExists = await UserRepository.findByUsername(username)
+    const userAlreadyExists = await UserRepository.findByUsername(username);
 
-    if (userAlreadyExists) throw new Error('username.exists')
+    if (userAlreadyExists) throw new Error('username.exists');
 
     const user = await UserRepository.create({
       name,
       password,
       username
-    })
+    });
 
-    return user
+    return user;
   }
 }
 
-export { CreateUserService }
+export default new CreateUserService();

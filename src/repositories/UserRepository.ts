@@ -1,4 +1,4 @@
-import prismaClient from '../prisma'
+import prismaClient from '../prisma';
 
 export interface IUser {
   username: string
@@ -8,7 +8,7 @@ export interface IUser {
 
 class UserRepository {
   findAll() {
-    return prismaClient.user.findMany()
+    return prismaClient.user.findMany();
   }
 
   findByUsername(username: string) {
@@ -16,13 +16,13 @@ class UserRepository {
       where: {
         username
       }
-    })
+    });
   }
 
   create(data: IUser) {
     return prismaClient.user.create({
       data
-    })
+    });
   }
 
   delete(username: string) {
@@ -30,7 +30,7 @@ class UserRepository {
       where: {
         username
       }
-    })
+    });
   }
 
   update(username: string, data: IUser) {
@@ -39,8 +39,8 @@ class UserRepository {
         username
       },
       data
-    })
+    });
   }
 }
 
-export default new UserRepository()
+export default new UserRepository();

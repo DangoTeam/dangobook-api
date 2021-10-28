@@ -1,14 +1,20 @@
-import { Request, Response } from 'express';
-import { AuthenticateUserService } from '../services/AuthenticateUserService';
+import { Request, Response } from 'express'
+import { AuthenticateUserService } from '../services/AuthenticateUserService'
 
 class AuthenticateUserController {
   async handle(request: Request, response: Response) {
-    const { username, password } = request.body;
+    try {
+      const { username, password } = request.body
 
-    const service = new AuthenticateUserService();
-    const result = await service.execute(username, password);
+      const service = new AuthenticateUserService()
+      const result = await service.execute(username, password)
 
-    return response.json(result);
+      return response.json(result)
+    } catch (err) {
+      return response
+        .status(422)
+        .json({ error: err.message, status: response.statusCode })
+    }
   }
 }
 

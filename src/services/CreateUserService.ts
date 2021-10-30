@@ -1,4 +1,4 @@
-import { genSaltSync, hashSync, compareSync } from 'bcrypt';
+import { genSaltSync, hashSync } from 'bcrypt';
 
 import UserRepository from '../repositories/UserRepository';
 

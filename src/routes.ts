@@ -6,5 +6,5 @@ import CreateUserController from './controllers/CreateUserController';
 export const router = Router();
 
 router
-  .post('/authenticate', AuthenticateUserController.handle)
+  .post('/signin', AuthenticateUserController.handle)
   .post('/signup', CreateUserController.handle);

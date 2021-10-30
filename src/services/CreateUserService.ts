@@ -1,3 +1,5 @@
+import { genSaltSync, hashSync, compareSync } from 'bcrypt';
+
 import UserRepository from '../repositories/UserRepository';
 
 class CreateUserService {
@@ -6,9 +8,13 @@ class CreateUserService {
 
     if (userAlreadyExists) throw new Error('username.exists');
 
+    const salt = genSaltSync(10);
+
+    const criptedPassword = hashSync(password, salt);
+
     const user = await UserRepository.create({
       name,
-      password,
+      password: criptedPassword,
       username
     });
 

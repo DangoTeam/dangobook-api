@@ -1,5 +1,5 @@
 import { sign } from 'jsonwebtoken';
-import { compareSync } from 'bcrypt';
+import { compare } from 'bcrypt';
 import UserRepository from '../repositories/UserRepository';
 
 class AuthenticateUserService {
@@ -8,7 +8,7 @@ class AuthenticateUserService {
 
     if (!user) throw new Error('unknown.user');
 
-    const userPasswordIsCorrect = compareSync(password, user.password);
+    const userPasswordIsCorrect = await compare(password, user.password);
 
     if (!userPasswordIsCorrect) throw new Error('password.invalid');
 
@@ -16,12 +16,12 @@ class AuthenticateUserService {
       {
         user: {
           name: user.name,
-          id: user.id
+          id: user.username
         }
       },
       process.env.JWT_SECRET,
       {
-        subject: user.id,
+        subject: user.username,
         expiresIn: '7d'
       }
     );

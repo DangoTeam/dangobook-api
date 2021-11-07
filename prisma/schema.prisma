@@ -8,22 +8,32 @@ datasource db {
 }
 
 model User {
-  username  String  @id
+  id        Int         @id @default(autoincrement())
+  username  String      @unique
   name      String?
   password  String
   bio       String?
   posts     Post[]
+  following Following[]
 
   @@map("users")
-
 }
 
 model Post {
-  id           String   @id @default(uuid())
-  author       User     @relation(fields: [userUsername], references: [username])
-  createdAt    DateTime @default(now())
-  content      String
-  userUsername String
+  id        String   @id @default(uuid())
+  author    User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  content   String
+  userId    Int
 
   @@map("posts")
 }
+
+model Following {
+  userId         Int    @id
+  followingUsers User[]
+}
+
+// model Followers {
+//
+// }

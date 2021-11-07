@@ -8,10 +8,22 @@ datasource db {
 }
 
 model User {
-  id          String @default(uuid())
-  username    String @id
-  name        String?
-  password    String
+  username  String  @id
+  name      String?
+  password  String
+  bio       String?
+  posts     Post[]
 
   @@map("users")
+
+}
+
+model Post {
+  id           String   @id @default(uuid())
+  author       User     @relation(fields: [userUsername], references: [username])
+  createdAt    DateTime @default(now())
+  content      String
+  userUsername String
+
+  @@map("posts")
 }

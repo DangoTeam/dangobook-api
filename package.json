@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "tsnd --respawn --no-notify --transpile-only src/app.ts",
+    "dev": "tsnd --respawn --exit-child --no-notify --transpile-only src/app.ts",
     "start": "tsnd --respawn --no-notify --transpile-only src/app.ts",
     "lint": "eslint ./ --ext js,ts",
     "lint:fix": "eslint ./ --ext js,ts --fix"

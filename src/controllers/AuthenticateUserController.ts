@@ -4,15 +4,15 @@ import AuthenticateUserService from '../services/AuthenticateUserService';
 class AuthenticateUserController {
   async handle(request: Request, response: Response) {
     try {
-      const { userUsername, password } = request.body;
+      const { username, password } = request.body;
 
-      const result = await AuthenticateUserService.execute(userUsername, password);
+      const result = await AuthenticateUserService.execute(username, password);
 
-      const { token, user: { username, name } } = result;
+      const { token, user: { username: userUsername, name, id } } = result;
 
       return response
         .status(201)
-        .json({ token, user: { username, name } });
+        .json({ token, user: { id, userUsername, name } });
     } catch (err) {
       return response
         .status(422)

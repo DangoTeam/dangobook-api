@@ -1,9 +1,10 @@
 import prismaClient from '../prisma';
 
 export interface IUser {
-  username: string
-  password: string
-  name: string
+  username: string;
+  password: string;
+  name: string;
+  bio: string;
 }
 
 class UserRepository {
@@ -19,24 +20,32 @@ class UserRepository {
     });
   }
 
+  findById(id: string) {
+    return prismaClient.user.findUnique({
+      where: {
+        id
+      }
+    });
+  }
+
   create(data: IUser) {
     return prismaClient.user.create({
       data
     });
   }
 
-  delete(username: string) {
+  delete(id: string) {
     return prismaClient.user.delete({
       where: {
-        username
+        id
       }
     });
   }
 
-  update(username: string, data: IUser) {
+  update(id: string, data: IUser) {
     return prismaClient.user.update({
       where: {
-        username
+        id
       },
       data
     });

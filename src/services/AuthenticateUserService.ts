@@ -15,13 +15,12 @@ class AuthenticateUserService {
     const token = sign(
       {
         user: {
-          name: user.name,
-          id: user.username
+          id: user.id
         }
       },
       process.env.JWT_SECRET,
       {
-        subject: user.username,
+        subject: user.id,
         expiresIn: '7d'
       }
     );

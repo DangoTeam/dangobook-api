@@ -5,11 +5,19 @@ class ChangeUserInformationController {
   async handle(request: Request, response: Response) {
     const { data } = request.body;
 
-    const { userUsername } = request;
+    const { userId } = request;
 
-    const result = await ChangeUserInformationsService.execute(userUsername, data);
+    const result = await ChangeUserInformationsService.execute(userId, data);
 
-    return response.json(result);
+    const {
+      id, username, name, bio
+    } = result;
+
+    return response
+      .status(201)
+      .json({
+        id, username, name, bio
+      });
   }
 }
 

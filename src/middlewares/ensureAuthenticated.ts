@@ -22,7 +22,7 @@ export function ensureAuthenticated(request: Request, response: Response, next: 
   try {
     const { sub } = verify(token, process.env.JWT_SECRET) as IPayload;
 
-    request.userUsername = sub;
+    request.userId = sub;
 
     return next();
   } catch (err) {

@@ -3,10 +3,10 @@ import { genSalt, hash } from 'bcrypt';
 import UserRepository from '../repositories/UserRepository';
 
 class CreateUserService {
-  async execute(username: string, password: string, name?: string) {
+  async execute(username: string, password: string, name?: string, bio?: string) {
     const userAlreadyExists = await UserRepository.findByUsername(username);
 
-    if (userAlreadyExists) throw new Error('username.exists');
+    if (userAlreadyExists) throw new Error('user.exists');
 
     const salt = await genSalt(10);
 
@@ -15,7 +15,8 @@ class CreateUserService {
     const user = await UserRepository.create({
       name,
       password: cryptedPassword,
-      username
+      username,
+      bio
     });
 
     return user;

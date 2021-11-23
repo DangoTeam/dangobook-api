@@ -4,11 +4,11 @@ import CreateUserService from '../services/CreateUserService';
 class CreateUserController {
   async handle(request: Request, response: Response) {
     try {
-      const { userUsername, password, name } = request.body;
+      const { username, password, name } = request.body;
 
-      if (!userUsername || !password) throw new Error('missing.information');
+      if (!username || !password) throw new Error('missing.information');
 
-      const usernameWithNoSpaces = userUsername.replace(/\s+/g, '').toLowerCase();
+      const usernameWithNoSpaces = username.replace(/\s+/g, '').toLowerCase();
 
       await CreateUserService.execute(
         usernameWithNoSpaces,
@@ -18,7 +18,7 @@ class CreateUserController {
 
       return response
         .status(201)
-        .json({ userUsername, name });
+        .json({ username, name });
     } catch (err) {
       return response
         .status(422)

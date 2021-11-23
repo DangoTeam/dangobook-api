@@ -10,7 +10,7 @@
     "lint:fix": "eslint ./ --ext js,ts --fix"
   },
   "dependencies": {
-    "@prisma/client": "3.3.0",
+    "@prisma/client": "^3.5.0",
     "bcrypt": "^5.0.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",

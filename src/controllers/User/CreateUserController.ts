@@ -1,5 +1,5 @@
-import { Request, Response } from 'express';
-import CreateUserService from '../services/CreateUserService';
+import { Request, Response, RequestHandler } from 'express';
+import CreateUserService from '../../services/User/CreateUserService';
 
 class CreateUserController {
   async handle(request: Request, response: Response) {
@@ -10,11 +10,10 @@ class CreateUserController {
 
       const usernameWithNoSpaces = username.replace(/\s+/g, '').toLowerCase();
 
-      await CreateUserService.execute(
-        usernameWithNoSpaces,
-        password,
-        name
-      );
+      await CreateUserService.execute({
+        ...request.body,
+        username: usernameWithNoSpaces
+      });
 
       return response
         .status(201)

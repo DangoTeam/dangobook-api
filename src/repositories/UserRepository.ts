@@ -1,11 +1,5 @@
+import { IUser } from '../@types/interfaces/UserInterface';
 import prismaClient from '../prisma';
-
-export interface IUser {
-  username: string;
-  password: string;
-  name: string;
-  bio: string;
-}
 
 class UserRepository {
   findAll() {

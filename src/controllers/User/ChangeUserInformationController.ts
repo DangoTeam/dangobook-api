@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import ChangeUserInformationsService from '../services/ChangeUserInformationsService';
+import ChangeUserInformationsService from '../../services/User/ChangeUserInformationsService';
 
 class ChangeUserInformationController {
   async handle(request: Request, response: Response) {

@@ -1,12 +1,6 @@
 import { genSalt, hash } from 'bcrypt';
-import UserRepository from '../repositories/UserRepository';
-
-interface IUser {
-  username: string;
-  name: string;
-  password: string;
-  bio: string;
-}
+import { IUser } from '../../@types/interfaces/UserInterface';
+import UserRepository from '../../repositories/UserRepository';
 
 class ChangeUserInformationService {
   async execute(id: string, data?: IUser) {
@@ -23,7 +17,7 @@ class ChangeUserInformationService {
 
     const userUpdated = await UserRepository.update(id, data);
 
-    return user;
+    return userUpdated;
   }
 }
 

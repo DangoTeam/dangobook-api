@@ -1,14 +1,5 @@
+import { IPost } from '../@types/interfaces/PostInterface';
 import prismaClient from '../prisma';
-
-export interface IPost {
-  id: string;
-  author: {
-    username: string;
-    name: string;
-  }
-  content: string;
-  createdAt: string;
-}
 
 class PostRepository {
   findAll(id) {

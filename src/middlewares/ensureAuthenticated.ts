@@ -16,7 +16,7 @@ export function ensureAuthenticated(request: Request, response: Response, next: 
         errorCode: 'token.invalid'
       });
   }
-
+  // Bearer token
   const [, token] = authToken.split(' ');
 
   try {

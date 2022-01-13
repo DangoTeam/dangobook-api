@@ -1,6 +1,6 @@
 import { sign } from 'jsonwebtoken';
 import { compare } from 'bcrypt';
-import UserRepository from '../repositories/UserRepository';
+import UserRepository from '../../repositories/UserRepository';
 
 class AuthenticateUserService {
   async execute(username: string, password: string) {

@@ -13,4 +13,4 @@ router
   .post('/signin', AuthenticateUserController.handle)
   .post('/signup', CreateUserController.handle)
   .post('/settings/account', ensureAuthenticated, ChangeUserInformationController.handle)
-  .post('/profile/create_post', ensureAuthenticated, CreatePostController.handle);
+  .post('/post', ensureAuthenticated, CreatePostController.handle);

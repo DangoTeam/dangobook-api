@@ -1,10 +1,14 @@
 import { IPost } from '../../@types/interfaces/PostInterface';
 import PostRepository from '../../repositories/PostRepository';
 
-class CreatePostServices {
+class CreatePostService {
   async execute(data: IPost) {
-    return PostRepository.create(data);
+    const newPost = await PostRepository.create({
+      ...data,
+    });
+
+    return newPost;
   }
 }
 
-export default new CreatePostServices();
+export default new CreatePostService();

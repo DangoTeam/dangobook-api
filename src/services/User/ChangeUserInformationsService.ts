@@ -1,13 +1,13 @@
-import { genSalt, hash, compare } from 'bcrypt';
+/* eslint-disable no-param-reassign */
+import { hash } from 'bcrypt';
 import { IUser } from '../../@types/interfaces/UserInterface';
 import UserRepository from '../../repositories/UserRepository';
 
 class ChangeUserInformationService {
   async execute(id: string, data: IUser) {
-    const cryptedPassword = await hash(data.password, 10);
-
-    // eslint-disable-next-line no-param-reassign
-    data.password = cryptedPassword;
+    if (data.password) {
+      data.password = await hash(data.password, 10);
+    }
 
     const userUpdated = await UserRepository.update(id, data);
 

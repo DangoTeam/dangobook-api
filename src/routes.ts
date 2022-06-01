@@ -10,7 +10,7 @@ import { ensureAuthenticated } from './middlewares/ensureAuthenticated';
 export const router = Router();
 
 router
-  .post('/signin', AuthenticateUserController.handle)
-  .post('/signup', CreateUserController.handle)
-  .post('/settings/account', ensureAuthenticated, ChangeUserInformationController.handle)
-  .post('/post', ensureAuthenticated, CreatePostController.handle);
+  .post('/users/auth', AuthenticateUserController.handle)
+  .post('/users', CreateUserController.handle)
+  .patch('/settings/account', ensureAuthenticated, ChangeUserInformationController.handle)
+  .post('/posts', ensureAuthenticated, CreatePostController.handle);
